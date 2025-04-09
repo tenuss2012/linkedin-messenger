@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    ports:
+      - "8444:8444"
+    volumes:
+      - .:/app
+    env_file:
+      - .env
+    restart: unless-stopped
+    command: gunicorn --bind 0.0.0.0:8444 --workers 4 wsgi:app
+    depends_on:
+      - redis
+
+  redis:
+    image: redis:6-alpine
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    restart: unless-stopped
+
+volumes:
+  redis_data:

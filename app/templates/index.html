@@ -1,0 +1,51 @@
+{% extends "layout.html" %}
+
+{% block title %}LinkedIn Messenger - Home{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8 text-center">
+        <h1 class="display-4 mb-4">Welcome to LinkedIn Messenger</h1>
+        <p class="lead">Stay connected with your LinkedIn network with real-time messaging.</p>
+        
+        <div class="mt-5">
+            {% if current_user.is_authenticated %}
+                <a href="{{ url_for('main.conversations') }}" class="btn btn-primary btn-lg">View My Conversations</a>
+            {% else %}
+                <a href="{{ url_for('auth.login') }}" class="btn btn-primary btn-lg">Login with LinkedIn</a>
+                <p class="mt-3 text-muted">Connect your LinkedIn account to get started.</p>
+            {% endif %}
+        </div>
+        
+        <div class="mt-5">
+            <h2>Features</h2>
+            <div class="row mt-4">
+                <div class="col-md-4">
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <h3 class="h5">Real-time Messaging</h3>
+                            <p>Instant communication with your network.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <h3 class="h5">LinkedIn Integration</h3>
+                            <p>Seamlessly connect with your LinkedIn contacts.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <h3 class="h5">Instant Notifications</h3>
+                            <p>Never miss an important message.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
